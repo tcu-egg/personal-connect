@@ -39,10 +39,11 @@ dependencies:
   riverpod_annotation: ^1.2.1
 
 dev_dependencies:
+  custom_lint:
   flutter_test:
     sdk: flutter
-
   pedantic_mono: ^1.21.1
+  riverpod_lint:
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
