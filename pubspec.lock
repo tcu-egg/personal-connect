@@ -135,10 +135,10 @@ packages:
     dependency: "direct dev"
     description:
       name: pedantic_mono
-      sha256: "9663f1805ab12e4d2f0bc95890fe6de3090d9899bddb7b546a947851b3e94438"
+      sha256: a852298d064d51a31d24863fd464c4bbd58aba6dfc8affbbf8a651fd803ae1b4
       url: "https://pub.dev"
     source: hosted
-    version: "1.20.1"
+    version: "1.21.1"
   riverpod:
     dependency: transitive
     description:
