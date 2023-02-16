@@ -1,4 +1,4 @@
-package com.ninebolt6.share_location_app
+package net.ninebolt.personal_connect
 
 import io.flutter.embedding.android.FlutterActivity
 

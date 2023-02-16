@@ -1,6 +1,6 @@
 {
-    "name": "share_location_app",
-    "short_name": "share_location_app",
+    "name": "personal_connect",
+    "short_name": "personal_connect",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

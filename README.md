@@ -1,4 +1,4 @@
-# share_location_app
+# personal_connect
 
 A new Flutter project.
 
