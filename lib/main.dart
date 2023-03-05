@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import './firebase_options.dart';
-import 'pages/home.dart';
+import './router.dart';
 import 'theme.dart';
 
 void main() async {
@@ -14,17 +14,17 @@ void main() async {
   runApp(const ProviderScope(child: MyApp()));
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends ConsumerWidget {
   const MyApp({super.key});
 
   // This widget is the root of your application.
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
+  Widget build(BuildContext context, WidgetRef ref) {
+    return MaterialApp.router(
       title: 'Personal Connect',
       theme: lightTheme,
       darkTheme: darkTheme,
-      home: const HomePage(),
+      routerConfig: ref.watch(router),
     );
   }
 }

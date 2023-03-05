@@ -1,65 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-class HomePage extends StatelessWidget {
+import '../controllers/auth.dart';
+
+class HomePage extends ConsumerWidget {
   const HomePage({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final authController = ref.watch(authControllerProvider);
     return Scaffold(
-      key: const ValueKey('home'),
-      backgroundColor: Theme.of(context).primaryColor,
-      appBar: AppBar(
-        backgroundColor: const Color(0xFF6DB1E7),
-        automaticallyImplyLeading: false,
-        title: const Text(
-          'PersonalConnect',
-        ),
-        actions: const [],
-        centerTitle: false,
-        elevation: 2,
-      ),
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Expanded(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
-                Text('logo'),
-              ],
-            ),
-          ),
-          Expanded(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
-                    child: Column(
-                      children: [
-                        TextButton(
-                          onPressed: () {},
-                          child: const Text('アカウント登録'),
-                        ),
-                        const Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                            0,
-                            2,
-                            0,
-                            20,
-                          ),
-                        ),
-                        TextButton(
-                          onPressed: () {},
-                          child: const Text('ログイン'),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ],
-            ),
+          const Text('Logged In'),
+          TextButton(
+            onPressed: () async {
+              await authController.signOut();
+              if (context.mounted) {
+                GoRouter.of(context).go('/');
+              }
+            },
+            child: const Text('ログアウト'),
           ),
         ],
       ),

@@ -1,0 +1,68 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+
+final firebaseAuthProvider =
+    Provider<FirebaseAuth>((ref) => FirebaseAuth.instance);
+
+final authControllerProvider =
+    Provider<AuthController>((ref) => AuthController());
+
+final authStreamProvider = StreamProvider.autoDispose(
+  (ref) => ref
+      .read(firebaseAuthProvider)
+      .authStateChanges()
+      .map((user) => user != null),
+);
+
+class AuthController {
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+
+  Stream<User?> get authStateChange => _auth.authStateChanges();
+
+  Future<User?> signInWithMicrosoft(BuildContext context) async {
+    try {
+      final credential = await _auth.signInWithPopup(MicrosoftAuthProvider());
+
+      // FIXME: エラーハンドリング
+      if (credential.user == null || credential.user!.email == null) {
+        if (context.mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: const Text('ユーザ情報が取得できませんでした'),
+              backgroundColor: Theme.of(context).colorScheme.error,
+            ),
+          );
+        }
+      }
+
+      // 認証ガード
+      // @tcu.ac.jp以外のユーザを弾く
+      if (!credential.user!.email!.endsWith('@tcu.ac.jp')) {
+        if (context.mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content:
+                  Text('あなたのアカウント(${credential.user!.email!})では本サービスを利用できません'),
+              backgroundColor: Theme.of(context).colorScheme.error,
+            ),
+          );
+        }
+        await signOut();
+      }
+
+      return credential.user;
+    } on FirebaseAuthException catch (e) {
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(e.toString())),
+        );
+      }
+    }
+    return null;
+  }
+
+  Future<void> signOut() async {
+    await _auth.signOut();
+  }
+}
