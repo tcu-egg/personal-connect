@@ -19,5 +19,6 @@ ThemeData lightTheme = ThemeData(
       ),
     ),
   ),
+  colorScheme: ColorScheme.fromSwatch().copyWith(background: Colors.white),
 );
 ThemeData darkTheme = ThemeData(primarySwatch: Colors.grey);
