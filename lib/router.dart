@@ -4,8 +4,9 @@ import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:personal_connect/controllers/auth.dart';
 
-import './pages/home.dart';
-import './pages/signin.dart';
+import 'pages/home.dart';
+import 'pages/my_account.dart';
+import 'pages/signin.dart';
 
 const _initialLocation = '/';
 final router = Provider(
@@ -21,6 +22,11 @@ final router = Provider(
       GoRoute(
         path: '/home',
         pageBuilder: (context, state) => const MaterialPage(child: HomePage()),
+      ),
+      GoRoute(
+        path: '/profile',
+        pageBuilder: (context, state) =>
+            const MaterialPage(child: MyAccountPage()),
       )
     ],
     redirect: (context, state) async {

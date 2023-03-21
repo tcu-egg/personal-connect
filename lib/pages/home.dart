@@ -24,6 +24,14 @@ class HomePage extends ConsumerWidget {
             },
             child: const Text('ログアウト'),
           ),
+          TextButton(
+            onPressed: () async {
+              if (context.mounted) {
+                GoRouter.of(context).go('/profile');
+              }
+            },
+            child: const Text('My Profile'),
+          ),
         ],
       ),
       bottomNavigationBar: navigationBar(),
