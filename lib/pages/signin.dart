@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import '../components/layout.dart';
 import '../controllers/auth.dart';
 
 class SignInPage extends ConsumerWidget {
@@ -13,16 +14,7 @@ class SignInPage extends ConsumerWidget {
 
     return Scaffold(
       backgroundColor: Theme.of(context).primaryColor,
-      appBar: AppBar(
-        backgroundColor: const Color(0xFF6DB1E7),
-        automaticallyImplyLeading: false,
-        title: const Text(
-          'PersonalConnect',
-        ),
-        actions: const [],
-        centerTitle: false,
-        elevation: 2,
-      ),
+      appBar: commonAppBar(),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
