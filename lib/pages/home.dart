@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:personal_connect/components/navigation_bar.dart';
 
-import '../components/layout.dart';
 import '../controllers/auth.dart';
 
 class HomePage extends ConsumerWidget {
@@ -12,6 +12,7 @@ class HomePage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final authController = ref.watch(authControllerProvider);
     return Scaffold(
+      bottomNavigationBar: const CommonNavigationBar(),
       body: Column(
         children: [
           const Text('Logged In'),
@@ -34,7 +35,6 @@ class HomePage extends ConsumerWidget {
           ),
         ],
       ),
-      bottomNavigationBar: navigationBar(),
     );
   }
 }

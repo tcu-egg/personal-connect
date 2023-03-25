@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:personal_connect/components/layout.dart';
+import 'package:personal_connect/components/navigation_bar.dart';
 
 import '../controllers/auth.dart';
 
@@ -12,7 +13,7 @@ class MyAccountPage extends ConsumerWidget {
     final authController = ref.watch(authControllerProvider);
     return Scaffold(
       appBar: commonAppBar(),
-      bottomNavigationBar: navigationBar(),
+      bottomNavigationBar: const CommonNavigationBar(),
       body: SafeArea(
         child: Center(
           child: Column(
