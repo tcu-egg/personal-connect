@@ -5,24 +5,17 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 final firebaseAuthProvider =
     Provider<FirebaseAuth>((ref) => FirebaseAuth.instance);
 
-final authControllerProvider =
-    Provider<AuthController>((ref) => AuthController());
-
-final authStreamProvider = StreamProvider.autoDispose(
-  (ref) => ref
-      .read(firebaseAuthProvider)
-      .authStateChanges()
-      .map((user) => user != null),
-);
+final authControllerProvider = Provider<AuthController>(AuthController.new);
 
 class AuthController {
-  final FirebaseAuth _auth = FirebaseAuth.instance;
-
-  Stream<User?> get authStateChange => _auth.authStateChanges();
+  AuthController(this.ref);
+  final ProviderRef<AuthController> ref;
 
   Future<User?> signInWithMicrosoft(BuildContext context) async {
     try {
-      final credential = await _auth.signInWithPopup(MicrosoftAuthProvider());
+      final credential = await ref
+          .watch(firebaseAuthProvider)
+          .signInWithPopup(MicrosoftAuthProvider());
 
       // FIXME: エラーハンドリング
       if (credential.user == null || credential.user!.email == null) {
@@ -63,6 +56,6 @@ class AuthController {
   }
 
   Future<void> signOut() async {
-    await _auth.signOut();
+    await ref.watch(firebaseAuthProvider).signOut();
   }
 }
