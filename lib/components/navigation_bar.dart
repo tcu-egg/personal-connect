@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class _Item extends BottomNavigationBarItem {
   _Item({required super.icon, super.label, required this.route});
@@ -12,30 +11,28 @@ var _items = [
   _Item(icon: const Icon(Icons.person), label: 'Profile', route: '/profile')
 ];
 
-final currentIndexProvider =
-    StateProviderFamily<int, int>((ref, param) => param);
+int geLocationIndex(String location) {
+  final index = _items.indexWhere(
+    (element) => location == element.route,
+  );
 
-class CommonNavigationBar extends ConsumerWidget {
+  return index == -1 ? 0 : index;
+}
+
+class CommonNavigationBar extends StatelessWidget {
   const CommonNavigationBar({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final currentIndex = ref.watch(
-      currentIndexProvider(
-        // 初期値を表示されているページのindexに設定する
-        _items.indexWhere(
-          (element) => GoRouter.of(context).location == element.route,
-        ),
-      ).notifier,
-    );
+  Widget build(BuildContext context) {
+    var currentIndex = geLocationIndex(GoRouter.of(context).location);
 
     return BottomNavigationBar(
       items: _items,
-      currentIndex: currentIndex.state,
+      currentIndex: currentIndex,
       onTap: (value) {
-        currentIndex.state = value;
+        currentIndex = value;
         if (context.mounted) {
-          GoRouter.of(context).go(_items[currentIndex.state].route);
+          GoRouter.of(context).go(_items[currentIndex].route);
         }
       },
     );
