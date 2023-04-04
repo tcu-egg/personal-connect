@@ -12,11 +12,23 @@ class AccountInfo extends HookWidget {
 
   final String? iconUrl;
   final String? email;
-  final String? displayName;
+  final String displayName;
   final bool? canEdit;
 
   @override
   Widget build(BuildContext context) {
+    final displayNameController = useTextEditingController(text: displayName);
+    final dirty = useState(false);
+    useEffect(
+      () {
+        displayNameController.addListener(() {
+          dirty.value = displayNameController.text != displayName;
+        });
+        return displayNameController.dispose;
+      },
+      [displayNameController.text],
+    );
+
     return SafeArea(
       child: Center(
         child: Column(
@@ -71,11 +83,7 @@ class AccountInfo extends HookWidget {
                     padding:
                         const EdgeInsetsDirectional.fromSTEB(16, 16, 16, 0),
                     child: TextFormField(
-                      // controller: _model.textController2 ??=
-                      //     TextEditingController(
-                      //   text: editProfileUsersRecord!.displayName,
-                      // ),
-                      initialValue: displayName,
+                      controller: displayNameController,
                       enabled: canEdit,
                       decoration: InputDecoration(
                         labelText: '表示名',
@@ -112,13 +120,24 @@ class AccountInfo extends HookWidget {
                         ),
                       ),
                       style: Theme.of(context).textTheme.bodyMedium,
-                      // validator:
-                      //     _model.textController2Validator.asValidator(context),
                     ),
                   ),
                 ],
               ),
             ),
+            canEdit == true
+                ? Padding(
+                    padding: const EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
+                    child: SizedBox(
+                      width: 160,
+                      height: 40,
+                      child: ElevatedButton(
+                        onPressed: dirty.value ? () {} : null,
+                        child: const Text('変更を保存'),
+                      ),
+                    ),
+                  )
+                : const SizedBox(),
           ],
         ),
       ),

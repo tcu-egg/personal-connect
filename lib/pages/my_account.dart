@@ -23,7 +23,8 @@ class MyAccountPage extends ConsumerWidget {
           iconUrl: firebaseAuth.currentUser?.photoURL ??
               'https://picsum.photos/seed/495/600',
           email: firebaseAuth.currentUser?.email,
-          displayName: info?.displayName,
+          displayName: info.displayName,
+          canEdit: true,
         ),
         error: (err, _) => const Center(child: Text('エラーが発生しました')),
         loading: () => const Center(child: CircularProgressIndicator()),

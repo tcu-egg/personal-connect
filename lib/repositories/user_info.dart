@@ -27,7 +27,7 @@ final userInfoStreamProvider = StreamProvider(
     final res = store.snapshots().map((doc) => doc.data());
     return res.map((data) {
       if (data == null) {
-        return null;
+        throw Exception('UserInfo not found');
       }
       return UserInfo(
         displayName: data['displayName'] as String,
