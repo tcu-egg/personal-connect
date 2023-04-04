@@ -14,6 +14,7 @@ class MyAccountPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final firebaseAuth = ref.watch(firebaseAuthProvider);
     final userInfo = ref.watch(userInfoStreamProvider);
+    final userInfoRepository = ref.watch(userInfoRepositoryProvider);
 
     return Scaffold(
       appBar: commonAppBar(),
@@ -25,6 +26,19 @@ class MyAccountPage extends ConsumerWidget {
           email: firebaseAuth.currentUser?.email,
           displayName: info.displayName,
           canEdit: true,
+          onSave: (state) async {
+            await userInfoRepository.setDisplayName(
+              displayName: state.displayName,
+            );
+            if (context.mounted) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: const Text('保存しました'),
+                  backgroundColor: Theme.of(context).colorScheme.primary,
+                ),
+              );
+            }
+          },
         ),
         error: (err, _) => const Center(child: Text('エラーが発生しました')),
         loading: () => const Center(child: CircularProgressIndicator()),

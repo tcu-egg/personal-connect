@@ -1,6 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
+class FormState {
+  FormState({
+    this.displayName = '',
+  });
+
+  String displayName;
+}
+
 class AccountInfo extends HookWidget {
   const AccountInfo({
     super.key,
@@ -8,26 +16,22 @@ class AccountInfo extends HookWidget {
     this.email = '',
     this.displayName = '',
     this.canEdit = false,
+    this.onSave,
   });
 
   final String? iconUrl;
   final String? email;
   final String displayName;
   final bool? canEdit;
+  final void Function(FormState state)? onSave;
 
   @override
   Widget build(BuildContext context) {
     final displayNameController = useTextEditingController(text: displayName);
     final dirty = useState(false);
-    useEffect(
-      () {
-        displayNameController.addListener(() {
-          dirty.value = displayNameController.text != displayName;
-        });
-        return displayNameController.dispose;
-      },
-      [displayNameController.text],
-    );
+    void checkChanged() {
+      dirty.value = displayNameController.text != displayName;
+    }
 
     return SafeArea(
       child: Center(
@@ -85,6 +89,7 @@ class AccountInfo extends HookWidget {
                     child: TextFormField(
                       controller: displayNameController,
                       enabled: canEdit,
+                      onChanged: (_) => checkChanged(),
                       decoration: InputDecoration(
                         labelText: '表示名',
                         // labelStyle: Theme.of(context).subtitle2,
@@ -132,7 +137,16 @@ class AccountInfo extends HookWidget {
                       width: 160,
                       height: 40,
                       child: ElevatedButton(
-                        onPressed: dirty.value ? () {} : null,
+                        onPressed: dirty.value && onSave != null
+                            ? () {
+                                onSave!(
+                                  FormState(
+                                    displayName: displayNameController.text,
+                                  ),
+                                );
+                                dirty.value = false;
+                              }
+                            : null,
                         child: const Text('変更を保存'),
                       ),
                     ),

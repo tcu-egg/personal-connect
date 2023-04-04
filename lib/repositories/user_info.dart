@@ -61,7 +61,7 @@ class UserInfoRepository {
     });
   }
 
-  Future<void> setDisplayName(String displayName) async {
+  Future<void> setDisplayName({required String displayName}) async {
     final store = ref.watch(_userInfoStoreProvider);
     await store.set(
       {
