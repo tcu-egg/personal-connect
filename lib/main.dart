@@ -4,7 +4,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import './firebase_options.dart';
 import './router.dart';
-import 'theme.dart';
+import 'themes/theme.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
