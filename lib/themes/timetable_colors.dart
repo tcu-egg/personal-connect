@@ -1,5 +1,13 @@
 import 'package:flutter/material.dart';
 
+enum TimetableColor {
+  unselected,
+  selected1,
+  selected2,
+  selected3,
+  selected4,
+}
+
 @immutable
 class TimetableColors extends ThemeExtension<TimetableColors> {
   const TimetableColors({
@@ -15,6 +23,21 @@ class TimetableColors extends ThemeExtension<TimetableColors> {
   final Color selected2;
   final Color selected3;
   final Color selected4;
+
+  Color from(TimetableColor timetableColor) {
+    switch (timetableColor) {
+      case TimetableColor.unselected:
+        return unselected;
+      case TimetableColor.selected1:
+        return selected1;
+      case TimetableColor.selected2:
+        return selected2;
+      case TimetableColor.selected3:
+        return selected3;
+      case TimetableColor.selected4:
+        return selected4;
+    }
+  }
 
   @override
   TimetableColors copyWith({
