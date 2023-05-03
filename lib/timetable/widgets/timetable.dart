@@ -1,16 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:personal_connect/entity/timetable/timetable.dart';
 
+import '../entities/timetable.dart';
 import 'timetable_cell.dart';
 
 const rowMaxLength = 7;
 final headerColor = Colors.pink.shade300;
 
 class TimetableWidget extends HookWidget {
-  const TimetableWidget({super.key, required this.lectures});
+  const TimetableWidget({
+    super.key,
+    required this.lectures,
+    this.canEdit = false,
+  });
 
   final Map<Weekday, LectureMap> lectures;
+  final bool canEdit;
 
   @override
   Widget build(BuildContext context) {
@@ -76,10 +81,17 @@ class TimetableWidget extends HookWidget {
                 ),
                 ...Weekday.values.map(
                   (weekday) => Expanded(
-                    child: GestureDetector(
-                      onTap: () => print('tapped $weekday ${index + 1}'),
-                      child: TimetableCellWidget(
-                        lecture: lectures[weekday]?[index + 1],
+                    child: MouseRegion(
+                      cursor: canEdit
+                          ? SystemMouseCursors.click
+                          : MouseCursor.defer,
+                      child: GestureDetector(
+                        onTap: canEdit
+                            ? () => print('tapped $weekday ${index + 1}')
+                            : null,
+                        child: TimetableCellWidget(
+                          lecture: lectures[weekday]?[index + 1],
+                        ),
                       ),
                     ),
                   ),
