@@ -4,8 +4,8 @@ import 'package:personal_connect/themes/timetable_colors.dart';
 
 import '../entities/lecture.dart';
 
-class TimetableCellWidget extends HookWidget {
-  const TimetableCellWidget({super.key, this.lecture});
+class LectureCellWidget extends HookWidget {
+  const LectureCellWidget({super.key, this.lecture});
 
   final Lecture? lecture;
 
@@ -16,7 +16,7 @@ class TimetableCellWidget extends HookWidget {
         border: Border.all(),
         color: Theme.of(context)
             .extension<TimetableColors>()!
-            .from(lecture?.color ?? TimetableColor.selected1),
+            .from(lecture?.color ?? TimetableColor.unselected),
       ),
       child: Container(
         constraints: const BoxConstraints(

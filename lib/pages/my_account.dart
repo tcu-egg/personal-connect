@@ -7,7 +7,7 @@ import 'package:personal_connect/repositories/user_info.dart';
 import '../components/account_info.dart';
 import '../controllers/auth.dart';
 import '../timetable/repositories/timetable.dart';
-import '../timetable/widgets/timetable.dart';
+import '../timetable/widgets/lecture_table.dart';
 
 class MyAccountPage extends ConsumerWidget {
   const MyAccountPage({super.key});
@@ -57,8 +57,7 @@ class MyAccountPage extends ConsumerWidget {
                 data: (data) => MouseRegion(
                   cursor: SystemMouseCursors.click,
                   child: GestureDetector(
-                    onTap: () => print('navigate to edit page'),
-                    child: TimetableWidget(
+                    child: LectureTableWidget(
                       lectures: data.lectures,
                     ),
                   ),
