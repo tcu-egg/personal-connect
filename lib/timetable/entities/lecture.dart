@@ -17,4 +17,17 @@ class Lecture with _$Lecture {
 
   factory Lecture.fromJson(Map<String, dynamic> json) =>
       _$LectureFromJson(json);
+
+  factory Lecture.withDefaults({
+    String lectureName = '',
+    String professorName = '',
+    String roomName = '',
+    TimetableColor color = TimetableColor.selected1,
+  }) =>
+      Lecture(
+        lectureName: lectureName,
+        professorName: professorName,
+        roomName: roomName,
+        color: color,
+      );
 }
