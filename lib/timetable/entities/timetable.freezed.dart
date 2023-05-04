@@ -148,7 +148,8 @@ class __$$_TimetableCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true)
 class _$_Timetable with DiagnosticableTreeMixin implements _Timetable {
   const _$_Timetable(
       {required this.id,

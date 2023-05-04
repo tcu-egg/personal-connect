@@ -36,6 +36,8 @@ enum Weekday {
 
 @freezed
 class Timetable with _$Timetable {
+  // ignore: invalid_annotation_target
+  @JsonSerializable(explicitToJson: true)
   const factory Timetable({
     required String id,
     required String name,
