@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:personal_connect/components/layout.dart';
 import 'package:personal_connect/components/navigation_bar.dart';
@@ -57,6 +58,8 @@ class MyAccountPage extends ConsumerWidget {
                 data: (data) => MouseRegion(
                   cursor: SystemMouseCursors.click,
                   child: GestureDetector(
+                    onTap: () =>
+                        GoRouter.of(context).go('/profile/edit-timetable'),
                     child: LectureTableWidget(
                       lectures: data.lectures,
                     ),

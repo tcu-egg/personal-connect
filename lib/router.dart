@@ -7,6 +7,7 @@ import 'package:personal_connect/controllers/auth.dart';
 import 'pages/home.dart';
 import 'pages/my_account.dart';
 import 'pages/signin.dart';
+import 'timetable/pages/timetable_edit.dart';
 
 const _initialLocation = '/';
 final router = Provider(
@@ -27,7 +28,15 @@ final router = Provider(
         path: '/profile',
         pageBuilder: (context, state) =>
             const MaterialPage(child: MyAccountPage()),
-      )
+        routes: [
+          GoRoute(
+            path: 'edit-timetable',
+            pageBuilder: (context, state) => const MaterialPage(
+              child: TimetableEditPage(),
+            ),
+          ),
+        ],
+      ),
     ],
     redirect: (context, state) async {
       final auth = ref.read(firebaseAuthProvider);

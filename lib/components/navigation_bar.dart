@@ -13,7 +13,7 @@ var _items = [
 
 int geLocationIndex(String location) {
   final index = _items.indexWhere(
-    (element) => location == element.route,
+    (element) => location.startsWith(element.route),
   );
 
   return index == -1 ? 0 : index;
