@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../components/layout.dart';
-import '../../components/navigation_bar.dart';
-import '../../controllers/auth.dart';
+import '../../common/widgets/navigation_bar.dart';
+import '../../external/controllers/auth.dart';
+import '../../layout.dart';
 import '../repositories/timetable.dart';
 import '../widgets/timetable.dart';
 

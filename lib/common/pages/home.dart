@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:personal_connect/components/navigation_bar.dart';
 
-import '../controllers/auth.dart';
+import '../../common/widgets/navigation_bar.dart';
+import '../../external/controllers/auth.dart';
 
 class HomePage extends ConsumerWidget {
   const HomePage({super.key});

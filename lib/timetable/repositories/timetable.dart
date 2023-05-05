@@ -1,7 +1,7 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:personal_connect/controllers/store.dart';
-import 'package:personal_connect/utils/date.dart';
 
+import '../../external/controllers/store.dart';
+import '../../utils/date.dart';
 import '../entities/timetable.dart';
 
 final _timetableStoreProvider = Provider.family((ref, String userId) {

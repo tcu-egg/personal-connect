@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../components/layout.dart';
-import '../controllers/auth.dart';
+import '../../external/controllers/auth.dart';
+import '../../layout.dart';
 
 class SignInPage extends ConsumerWidget {
   const SignInPage({super.key});

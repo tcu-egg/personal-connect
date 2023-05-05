@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:personal_connect/components/layout.dart';
-import 'package:personal_connect/components/navigation_bar.dart';
-import 'package:personal_connect/repositories/user_info.dart';
 
-import '../components/account_info.dart';
-import '../controllers/auth.dart';
-import '../timetable/repositories/timetable.dart';
-import '../timetable/widgets/lecture_table.dart';
+import '../../common/widgets/navigation_bar.dart';
+import '../../external/controllers/auth.dart';
+import '../../layout.dart';
+import '../../timetable/repositories/timetable.dart';
+import '../../timetable/widgets/lecture_table.dart';
+import '../../user_info/repositories/user_info.dart';
+import '../widgets/account_info.dart';
 
 class MyAccountPage extends ConsumerWidget {
   const MyAccountPage({super.key});

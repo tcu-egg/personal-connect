@@ -2,12 +2,12 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:personal_connect/controllers/auth.dart';
 
-import 'pages/home.dart';
-import 'pages/my_account.dart';
-import 'pages/signin.dart';
+import 'common/pages/home.dart';
+import 'common/pages/signin.dart';
+import 'external/controllers/auth.dart';
 import 'timetable/pages/timetable_edit.dart';
+import 'user_info/pages/my_account.dart';
 
 const _initialLocation = '/';
 final router = Provider(
