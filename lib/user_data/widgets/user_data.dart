@@ -21,11 +21,6 @@ class UserDataWidget extends HookWidget {
   Widget build(BuildContext context) {
     final displayNameController =
         useTextEditingController(text: initialUserInfo?.displayName);
-    final dirty = useState(false);
-    void checkChanged() {
-      dirty.value = displayNameController.text != initialUserInfo?.displayName;
-    }
-
     final state = useState(initialUserInfo);
 
     return SafeArea(
@@ -89,7 +84,6 @@ class UserDataWidget extends HookWidget {
                     child: TextFormField(
                       controller: displayNameController,
                       enabled: canEdit,
-                      onChanged: (_) => checkChanged(),
                       decoration: InputDecoration(
                         labelText: '表示名',
                         // labelStyle: Theme.of(context).subtitle2,
@@ -137,14 +131,13 @@ class UserDataWidget extends HookWidget {
                       width: 160,
                       height: 40,
                       child: ElevatedButton(
-                        onPressed: dirty.value && onSave != null
+                        onPressed: onSave != null
                             ? () {
                                 onSave!(
                                   state.value!.copyWith(
                                     displayName: displayNameController.text,
                                   ),
                                 );
-                                dirty.value = false;
                               }
                             : null,
                         child: const Text('変更を保存'),
