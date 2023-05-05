@@ -49,12 +49,11 @@ class TimetableWidget extends HookWidget {
               ),
             );
             if (result != null) {
-              final newLectures = state.value.lectures[weekday] ?? {}
-                ..addAll({period: result});
+              final newLectures = state.value.lectures[weekday] ?? {};
               state.value = state.value.copyWith(
                 lectures: {
                   ...state.value.lectures,
-                  weekday: newLectures,
+                  weekday: {...newLectures, period: result}
                 },
               );
             }
