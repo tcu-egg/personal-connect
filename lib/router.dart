@@ -7,7 +7,7 @@ import 'common/pages/home.dart';
 import 'common/pages/signin.dart';
 import 'external/controllers/auth.dart';
 import 'timetable/pages/timetable_edit.dart';
-import 'user_info/pages/my_account.dart';
+import 'user_data/pages/my_account.dart';
 
 const _initialLocation = '/';
 final router = Provider(
