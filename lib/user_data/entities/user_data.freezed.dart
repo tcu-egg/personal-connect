@@ -22,6 +22,9 @@ UserData _$UserDataFromJson(Map<String, dynamic> json) {
 mixin _$UserData {
   String get displayName => throw _privateConstructorUsedError;
   String? get iconUrl => throw _privateConstructorUsedError;
+  String? get snsUrl => throw _privateConstructorUsedError;
+  String? get univInfo => throw _privateConstructorUsedError;
+  Gender get gender => throw _privateConstructorUsedError;
   DateTime get createdAt => throw _privateConstructorUsedError;
   DateTime get updatedAt => throw _privateConstructorUsedError;
 
@@ -39,6 +42,9 @@ abstract class $UserDataCopyWith<$Res> {
   $Res call(
       {String displayName,
       String? iconUrl,
+      String? snsUrl,
+      String? univInfo,
+      Gender gender,
       DateTime createdAt,
       DateTime updatedAt});
 }
@@ -58,6 +64,9 @@ class _$UserDataCopyWithImpl<$Res, $Val extends UserData>
   $Res call({
     Object? displayName = null,
     Object? iconUrl = freezed,
+    Object? snsUrl = freezed,
+    Object? univInfo = freezed,
+    Object? gender = null,
     Object? createdAt = null,
     Object? updatedAt = null,
   }) {
@@ -70,6 +79,18 @@ class _$UserDataCopyWithImpl<$Res, $Val extends UserData>
           ? _value.iconUrl
           : iconUrl // ignore: cast_nullable_to_non_nullable
               as String?,
+      snsUrl: freezed == snsUrl
+          ? _value.snsUrl
+          : snsUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
+      univInfo: freezed == univInfo
+          ? _value.univInfo
+          : univInfo // ignore: cast_nullable_to_non_nullable
+              as String?,
+      gender: null == gender
+          ? _value.gender
+          : gender // ignore: cast_nullable_to_non_nullable
+              as Gender,
       createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -92,6 +113,9 @@ abstract class _$$_UserDataCopyWith<$Res> implements $UserDataCopyWith<$Res> {
   $Res call(
       {String displayName,
       String? iconUrl,
+      String? snsUrl,
+      String? univInfo,
+      Gender gender,
       DateTime createdAt,
       DateTime updatedAt});
 }
@@ -109,6 +133,9 @@ class __$$_UserDataCopyWithImpl<$Res>
   $Res call({
     Object? displayName = null,
     Object? iconUrl = freezed,
+    Object? snsUrl = freezed,
+    Object? univInfo = freezed,
+    Object? gender = null,
     Object? createdAt = null,
     Object? updatedAt = null,
   }) {
@@ -121,6 +148,18 @@ class __$$_UserDataCopyWithImpl<$Res>
           ? _value.iconUrl
           : iconUrl // ignore: cast_nullable_to_non_nullable
               as String?,
+      snsUrl: freezed == snsUrl
+          ? _value.snsUrl
+          : snsUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
+      univInfo: freezed == univInfo
+          ? _value.univInfo
+          : univInfo // ignore: cast_nullable_to_non_nullable
+              as String?,
+      gender: null == gender
+          ? _value.gender
+          : gender // ignore: cast_nullable_to_non_nullable
+              as Gender,
       createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -139,6 +178,9 @@ class _$_UserData with DiagnosticableTreeMixin implements _UserData {
   const _$_UserData(
       {required this.displayName,
       this.iconUrl,
+      this.snsUrl,
+      this.univInfo,
+      required this.gender,
       required this.createdAt,
       required this.updatedAt});
 
@@ -150,13 +192,19 @@ class _$_UserData with DiagnosticableTreeMixin implements _UserData {
   @override
   final String? iconUrl;
   @override
+  final String? snsUrl;
+  @override
+  final String? univInfo;
+  @override
+  final Gender gender;
+  @override
   final DateTime createdAt;
   @override
   final DateTime updatedAt;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'UserData(displayName: $displayName, iconUrl: $iconUrl, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'UserData(displayName: $displayName, iconUrl: $iconUrl, snsUrl: $snsUrl, univInfo: $univInfo, gender: $gender, createdAt: $createdAt, updatedAt: $updatedAt)';
   }
 
   @override
@@ -166,6 +214,9 @@ class _$_UserData with DiagnosticableTreeMixin implements _UserData {
       ..add(DiagnosticsProperty('type', 'UserData'))
       ..add(DiagnosticsProperty('displayName', displayName))
       ..add(DiagnosticsProperty('iconUrl', iconUrl))
+      ..add(DiagnosticsProperty('snsUrl', snsUrl))
+      ..add(DiagnosticsProperty('univInfo', univInfo))
+      ..add(DiagnosticsProperty('gender', gender))
       ..add(DiagnosticsProperty('createdAt', createdAt))
       ..add(DiagnosticsProperty('updatedAt', updatedAt));
   }
@@ -178,6 +229,10 @@ class _$_UserData with DiagnosticableTreeMixin implements _UserData {
             (identical(other.displayName, displayName) ||
                 other.displayName == displayName) &&
             (identical(other.iconUrl, iconUrl) || other.iconUrl == iconUrl) &&
+            (identical(other.snsUrl, snsUrl) || other.snsUrl == snsUrl) &&
+            (identical(other.univInfo, univInfo) ||
+                other.univInfo == univInfo) &&
+            (identical(other.gender, gender) || other.gender == gender) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
             (identical(other.updatedAt, updatedAt) ||
@@ -186,8 +241,8 @@ class _$_UserData with DiagnosticableTreeMixin implements _UserData {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, displayName, iconUrl, createdAt, updatedAt);
+  int get hashCode => Object.hash(runtimeType, displayName, iconUrl, snsUrl,
+      univInfo, gender, createdAt, updatedAt);
 
   @JsonKey(ignore: true)
   @override
@@ -207,6 +262,9 @@ abstract class _UserData implements UserData {
   const factory _UserData(
       {required final String displayName,
       final String? iconUrl,
+      final String? snsUrl,
+      final String? univInfo,
+      required final Gender gender,
       required final DateTime createdAt,
       required final DateTime updatedAt}) = _$_UserData;
 
@@ -216,6 +274,12 @@ abstract class _UserData implements UserData {
   String get displayName;
   @override
   String? get iconUrl;
+  @override
+  String? get snsUrl;
+  @override
+  String? get univInfo;
+  @override
+  Gender get gender;
   @override
   DateTime get createdAt;
   @override

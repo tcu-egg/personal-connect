@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../utils/date.dart';
+import 'gender.dart';
 
 part 'user_data.freezed.dart';
 part 'user_data.g.dart';
@@ -12,6 +13,9 @@ class UserData with _$UserData {
   const factory UserData({
     required String displayName,
     String? iconUrl,
+    String? snsUrl,
+    String? univInfo,
+    required Gender gender,
     required DateTime createdAt,
     required DateTime updatedAt,
   }) = _UserData;
@@ -22,13 +26,19 @@ class UserData with _$UserData {
   factory UserData.withDefaults({
     required String displayName,
     String? iconUrl,
+    String? snsUrl,
+    String? univInfo,
+    Gender? gender,
     DateTime? createdAt,
     DateTime? updatedAt,
   }) {
     final now = timeNow();
     return UserData(
       displayName: displayName,
+      snsUrl: snsUrl,
+      univInfo: univInfo,
       iconUrl: iconUrl,
+      gender: gender ?? Gender.none,
       createdAt: createdAt ?? now,
       updatedAt: updatedAt ?? now,
     );
