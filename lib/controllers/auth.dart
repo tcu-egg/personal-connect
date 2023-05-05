@@ -48,7 +48,8 @@ class AuthController {
 
       if (credential.additionalUserInfo != null &&
           credential.additionalUserInfo!.isNewUser) {
-        final userInfoRepository = ref.watch(userInfoRepositoryProvider);
+        final userInfoRepository =
+            ref.watch(userInfoRepositoryProvider(credential.user!.uid));
         await userInfoRepository.setInitialData(
           SetInitialDataParams(
             displayName: credential.user!.displayName ?? 'ユーザー',

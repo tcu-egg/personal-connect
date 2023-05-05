@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:personal_connect/controllers/auth.dart';
 import 'package:personal_connect/controllers/store.dart';
 
 class UserInfo {
@@ -14,16 +13,15 @@ class UserInfo {
   final String updatedAt;
 }
 
-final _userInfoStoreProvider = Provider((ref) {
-  final auth = ref.watch(firebaseAuthProvider);
+final _userInfoStoreProvider = Provider.family((ref, String userId) {
   final store = ref.watch(firestoreProvider);
   final usersRef = store.collection('users');
-  return usersRef.doc(auth.currentUser!.uid);
+  return usersRef.doc(userId);
 });
 
-final userInfoStreamProvider = StreamProvider(
-  (ref) {
-    final store = ref.watch(_userInfoStoreProvider);
+final userInfoStreamProvider = StreamProvider.autoDispose.family(
+  (ref, String userId) {
+    final store = ref.watch(_userInfoStoreProvider(userId));
     final res = store.snapshots().map((doc) => doc.data());
     return res.map((data) {
       if (data == null) {
@@ -45,14 +43,15 @@ class SetInitialDataParams {
 
 String _timeNow() => DateTime.now().toUtc().toIso8601String();
 
-final userInfoRepositoryProvider = Provider(UserInfoRepository.new);
+final userInfoRepositoryProvider = Provider.family(UserInfoRepository.new);
 
 class UserInfoRepository {
-  UserInfoRepository(this.ref);
+  UserInfoRepository(this.ref, this.userId);
   final ProviderRef<UserInfoRepository> ref;
+  final String userId;
 
   Future<void> setInitialData(SetInitialDataParams params) async {
-    final store = ref.watch(_userInfoStoreProvider);
+    final store = ref.watch(_userInfoStoreProvider(userId));
     final now = _timeNow();
     await store.set({
       'displayName': params.displayName,
@@ -62,7 +61,7 @@ class UserInfoRepository {
   }
 
   Future<void> setDisplayName({required String displayName}) async {
-    final store = ref.watch(_userInfoStoreProvider);
+    final store = ref.watch(_userInfoStoreProvider(userId));
     await store.set(
       {
         'displayName': displayName,

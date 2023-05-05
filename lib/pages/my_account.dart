@@ -16,8 +16,10 @@ class MyAccountPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final firebaseAuth = ref.watch(firebaseAuthProvider);
-    final userInfo = ref.watch(userInfoStreamProvider);
-    final userInfoRepository = ref.watch(userInfoRepositoryProvider);
+    final userInfo =
+        ref.watch(userInfoStreamProvider(firebaseAuth.currentUser!.uid));
+    final userInfoRepository =
+        ref.watch(userInfoRepositoryProvider(firebaseAuth.currentUser!.uid));
     final timetable =
         ref.watch(timetableStreamProvider(firebaseAuth.currentUser!.uid));
 
