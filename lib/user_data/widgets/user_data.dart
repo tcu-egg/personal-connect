@@ -7,7 +7,7 @@ class UserDataWidget extends HookWidget {
   const UserDataWidget({
     super.key,
     this.initialUserInfo,
-    this.email = '',
+    this.email,
     this.canEdit = false,
     this.onSave,
   });
@@ -53,29 +53,34 @@ class UserDataWidget extends HookWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Padding(
-                    padding:
-                        const EdgeInsetsDirectional.fromSTEB(16, 16, 16, 0),
-                    child: TextFormField(
-                      initialValue: email,
-                      decoration: InputDecoration(
-                        labelText: 'メールアドレス',
-                        // labelStyle: Theme.of(context).subtitle2,
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: Theme.of(context).colorScheme.background,
-                          ),
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        filled: true,
-                        fillColor: Theme.of(context).colorScheme.background,
-                        prefixIcon: const Icon(
-                          Icons.email,
-                          // color: Theme.of(context).secondaryText,
-                        ),
+                  Visibility(
+                    visible: email != null,
+                    child: Padding(
+                      padding: const EdgeInsetsDirectional.fromSTEB(
+                        16,
+                        16,
+                        16,
+                        0,
                       ),
-                      enabled: false,
-                      style: Theme.of(context).textTheme.bodyMedium,
+                      child: TextFormField(
+                        initialValue: email,
+                        decoration: InputDecoration(
+                          labelText: 'メールアドレス',
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Theme.of(context).colorScheme.background,
+                            ),
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          filled: true,
+                          fillColor: Theme.of(context).colorScheme.background,
+                          prefixIcon: const Icon(
+                            Icons.email,
+                          ),
+                        ),
+                        enabled: false,
+                        style: Theme.of(context).textTheme.bodyMedium,
+                      ),
                     ),
                   ),
                   Padding(
