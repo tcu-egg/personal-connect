@@ -8,7 +8,7 @@ import '../../layout.dart';
 import '../../timetable/repositories/timetable.dart';
 import '../../timetable/widgets/lecture_table.dart';
 import '../repositories/user_data.dart';
-import '../widgets/account_info.dart';
+import '../widgets/user_data.dart';
 
 class MyAccountPage extends ConsumerWidget {
   const MyAccountPage({super.key});
@@ -30,7 +30,7 @@ class MyAccountPage extends ConsumerWidget {
         child: Column(
           children: [
             userInfo.when(
-              data: (data) => AccountInfo(
+              data: (data) => UserDataWidget(
                 initialUserInfo: data,
                 email: firebaseAuth.currentUser?.email,
                 canEdit: true,

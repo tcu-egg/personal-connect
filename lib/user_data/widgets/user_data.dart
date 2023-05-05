@@ -3,8 +3,8 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 
 import '../entities/user_data.dart';
 
-class AccountInfo extends HookWidget {
-  const AccountInfo({
+class UserDataWidget extends HookWidget {
+  const UserDataWidget({
     super.key,
     this.initialUserInfo,
     this.email = '',
