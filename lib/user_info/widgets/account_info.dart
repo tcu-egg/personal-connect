@@ -1,37 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
-class FormState {
-  FormState({
-    this.displayName = '',
-  });
-
-  String displayName;
-}
+import '../entities/user_data.dart';
 
 class AccountInfo extends HookWidget {
   const AccountInfo({
     super.key,
-    this.iconUrl = '',
+    this.initialUserInfo,
     this.email = '',
-    this.displayName = '',
     this.canEdit = false,
     this.onSave,
   });
 
-  final String? iconUrl;
+  final UserData? initialUserInfo;
   final String? email;
-  final String displayName;
   final bool? canEdit;
-  final void Function(FormState state)? onSave;
+  final void Function(UserData entity)? onSave;
 
   @override
   Widget build(BuildContext context) {
-    final displayNameController = useTextEditingController(text: displayName);
+    final displayNameController =
+        useTextEditingController(text: initialUserInfo?.displayName);
     final dirty = useState(false);
     void checkChanged() {
-      dirty.value = displayNameController.text != displayName;
+      dirty.value = displayNameController.text != initialUserInfo?.displayName;
     }
+
+    final state = useState(initialUserInfo);
 
     return SafeArea(
       child: Center(
@@ -47,7 +42,7 @@ class AccountInfo extends HookWidget {
                   shape: BoxShape.circle,
                 ),
                 child: Image.network(
-                  iconUrl ?? '',
+                  state.value?.iconUrl ?? 'https://picsum.photos/seed/495/600',
                   fit: BoxFit.cover,
                   errorBuilder: (context, error, stackTrace) => Container(),
                 ),
@@ -140,7 +135,7 @@ class AccountInfo extends HookWidget {
                         onPressed: dirty.value && onSave != null
                             ? () {
                                 onSave!(
-                                  FormState(
+                                  state.value!.copyWith(
                                     displayName: displayNameController.text,
                                   ),
                                 );

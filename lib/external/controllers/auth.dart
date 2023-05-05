@@ -2,7 +2,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../user_info/repositories/user_info.dart';
+import '../../user_info/entities/user_data.dart';
+import '../../user_info/repositories/user_data.dart';
 
 final firebaseAuthProvider =
     Provider<FirebaseAuth>((ref) => FirebaseAuth.instance);
@@ -50,8 +51,8 @@ class AuthController {
           credential.additionalUserInfo!.isNewUser) {
         final userInfoRepository =
             ref.watch(userInfoRepositoryProvider(credential.user!.uid));
-        await userInfoRepository.setInitialData(
-          SetInitialDataParams(
+        await userInfoRepository.save(
+          entity: UserData.withDefaults(
             displayName: credential.user!.displayName ?? 'ユーザー',
           ),
         );

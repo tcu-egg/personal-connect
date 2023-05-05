@@ -7,7 +7,7 @@ import '../../external/controllers/auth.dart';
 import '../../layout.dart';
 import '../../timetable/repositories/timetable.dart';
 import '../../timetable/widgets/lecture_table.dart';
-import '../../user_info/repositories/user_info.dart';
+import '../repositories/user_data.dart';
 import '../widgets/account_info.dart';
 
 class MyAccountPage extends ConsumerWidget {
@@ -17,7 +17,7 @@ class MyAccountPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final firebaseAuth = ref.watch(firebaseAuthProvider);
     final userInfo =
-        ref.watch(userInfoStreamProvider(firebaseAuth.currentUser!.uid));
+        ref.watch(userDataStreamProvider(firebaseAuth.currentUser!.uid));
     final userInfoRepository =
         ref.watch(userInfoRepositoryProvider(firebaseAuth.currentUser!.uid));
     final timetable =
@@ -30,16 +30,14 @@ class MyAccountPage extends ConsumerWidget {
         child: Column(
           children: [
             userInfo.when(
-              data: (info) => AccountInfo(
-                iconUrl: firebaseAuth.currentUser?.photoURL ??
-                    'https://picsum.photos/seed/495/600',
+              data: (data) => AccountInfo(
+                initialUserInfo: data,
                 email: firebaseAuth.currentUser?.email,
-                displayName: info.displayName,
                 canEdit: true,
                 onSave: (state) async {
-                  await userInfoRepository.setDisplayName(
-                    displayName: state.displayName,
-                  );
+                  if (data != state) {
+                    await userInfoRepository.save(entity: state);
+                  }
                   if (context.mounted) {
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
