@@ -9,8 +9,8 @@ enum TimetableColor {
 }
 
 @immutable
-class TimetableColors extends ThemeExtension<TimetableColors> {
-  const TimetableColors({
+class TimetableColorTheme extends ThemeExtension<TimetableColorTheme> {
+  const TimetableColorTheme({
     required this.unselected,
     required this.selected1,
     required this.selected2,
@@ -40,14 +40,14 @@ class TimetableColors extends ThemeExtension<TimetableColors> {
   }
 
   @override
-  TimetableColors copyWith({
+  TimetableColorTheme copyWith({
     Color? unselected,
     Color? selected1,
     Color? selected2,
     Color? selected3,
     Color? selected4,
   }) {
-    return TimetableColors(
+    return TimetableColorTheme(
       unselected: unselected ?? this.unselected,
       selected1: selected1 ?? this.selected1,
       selected2: selected2 ?? this.selected2,
@@ -57,11 +57,14 @@ class TimetableColors extends ThemeExtension<TimetableColors> {
   }
 
   @override
-  TimetableColors lerp(ThemeExtension<TimetableColors>? other, double t) {
-    if (other is! TimetableColors) {
+  TimetableColorTheme lerp(
+    ThemeExtension<TimetableColorTheme>? other,
+    double t,
+  ) {
+    if (other is! TimetableColorTheme) {
       return this;
     }
-    return TimetableColors(
+    return TimetableColorTheme(
       unselected: Color.lerp(unselected, other.unselected, t)!,
       selected1: Color.lerp(selected1, other.selected1, t)!,
       selected2: Color.lerp(selected2, other.selected2, t)!,

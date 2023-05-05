@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:personal_connect/themes/timetable_colors.dart';
+
+import 'timetable/themes/timetable_color.dart';
 
 ThemeData lightTheme = ThemeData(
   primarySwatch: Colors.blue,
@@ -22,7 +23,7 @@ ThemeData lightTheme = ThemeData(
   ),
   colorScheme: ColorScheme.fromSwatch().copyWith(background: Colors.white),
   extensions: const <ThemeExtension<dynamic>>{
-    TimetableColors(
+    TimetableColorTheme(
       unselected: Color.fromRGBO(0xA9, 0xA9, 0xA9, 1),
       selected1: Color.fromRGBO(0xFF, 0xFA, 0xCD, 1),
       selected2: Color.fromRGBO(0xFF, 0xFF, 0x00, 1),

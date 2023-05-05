@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
-import '../../themes/timetable_colors.dart';
 import '../entities/lecture.dart';
+import '../themes/timetable_color.dart';
 
 class LectureEditModalWidget extends HookWidget {
   const LectureEditModalWidget({super.key, required this.lecture});
@@ -85,7 +85,7 @@ class LectureEditModalWidget extends HookWidget {
                       value: color,
                       child: ColoredBox(
                         color: Theme.of(context)
-                            .extension<TimetableColors>()!
+                            .extension<TimetableColorTheme>()!
                             .from(color),
                         child: Text(color.toString()),
                       ),

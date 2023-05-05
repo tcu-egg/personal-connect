@@ -1,7 +1,7 @@
 // ignore: unused_import
 import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:personal_connect/themes/timetable_colors.dart';
+import 'package:personal_connect/timetable/themes/timetable_color.dart';
 
 part 'lecture.freezed.dart';
 part 'lecture.g.dart';

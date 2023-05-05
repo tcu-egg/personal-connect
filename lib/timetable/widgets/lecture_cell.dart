@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:personal_connect/themes/timetable_colors.dart';
+import 'package:personal_connect/timetable/themes/timetable_color.dart';
 
 import '../entities/lecture.dart';
 
@@ -15,7 +15,7 @@ class LectureCellWidget extends HookWidget {
       decoration: BoxDecoration(
         border: Border.all(),
         color: Theme.of(context)
-            .extension<TimetableColors>()!
+            .extension<TimetableColorTheme>()!
             .from(lecture?.color ?? TimetableColor.unselected),
       ),
       child: Container(
