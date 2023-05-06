@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:personal_connect/user_data/widgets/user_icon.dart';
 
 import '../entities/user_data.dart';
 
@@ -29,19 +30,7 @@ class UserDataWidget extends HookWidget {
           children: [
             Padding(
               padding: const EdgeInsetsDirectional.fromSTEB(0, 16, 0, 0),
-              child: Container(
-                width: 120,
-                height: 120,
-                clipBehavior: Clip.antiAlias,
-                decoration: const BoxDecoration(
-                  shape: BoxShape.circle,
-                ),
-                child: Image.network(
-                  state.value?.iconUrl ?? 'https://picsum.photos/seed/495/600',
-                  fit: BoxFit.cover,
-                  errorBuilder: (context, error, stackTrace) => Container(),
-                ),
-              ),
+              child: UserIconWidget(iconUrl: initialUserInfo?.iconUrl),
             ),
             SizedBox(
               width: 460,
