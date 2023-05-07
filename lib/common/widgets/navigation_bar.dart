@@ -8,7 +8,12 @@ class _Item extends BottomNavigationBarItem {
 
 var _items = [
   _Item(icon: const Icon(Icons.home), label: 'Home', route: '/home'),
-  _Item(icon: const Icon(Icons.person), label: 'Profile', route: '/profile')
+  _Item(icon: const Icon(Icons.person), label: 'Profile', route: '/profile'),
+  _Item(
+    icon: const Icon(Icons.search_rounded),
+    label: 'Search',
+    route: '/users',
+  ),
 ];
 
 int geLocationIndex(String location) {
