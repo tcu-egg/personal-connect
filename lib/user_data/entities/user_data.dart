@@ -11,6 +11,7 @@ part 'user_data.g.dart';
 @freezed
 class UserData with _$UserData {
   const factory UserData({
+    required String userId,
     required String displayName,
     String? iconUrl,
     String? snsUrl,
@@ -24,6 +25,7 @@ class UserData with _$UserData {
       _$UserDataFromJson(json);
 
   factory UserData.withDefaults({
+    required String userId,
     required String displayName,
     String? iconUrl,
     String? snsUrl,
@@ -34,6 +36,7 @@ class UserData with _$UserData {
   }) {
     final now = timeNow();
     return UserData(
+      userId: userId,
       displayName: displayName,
       snsUrl: snsUrl,
       univInfo: univInfo,

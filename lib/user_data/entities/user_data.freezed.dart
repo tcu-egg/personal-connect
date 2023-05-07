@@ -20,6 +20,7 @@ UserData _$UserDataFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$UserData {
+  String get userId => throw _privateConstructorUsedError;
   String get displayName => throw _privateConstructorUsedError;
   String? get iconUrl => throw _privateConstructorUsedError;
   String? get snsUrl => throw _privateConstructorUsedError;
@@ -40,7 +41,8 @@ abstract class $UserDataCopyWith<$Res> {
       _$UserDataCopyWithImpl<$Res, UserData>;
   @useResult
   $Res call(
-      {String displayName,
+      {String userId,
+      String displayName,
       String? iconUrl,
       String? snsUrl,
       String? univInfo,
@@ -62,6 +64,7 @@ class _$UserDataCopyWithImpl<$Res, $Val extends UserData>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? userId = null,
     Object? displayName = null,
     Object? iconUrl = freezed,
     Object? snsUrl = freezed,
@@ -71,6 +74,10 @@ class _$UserDataCopyWithImpl<$Res, $Val extends UserData>
     Object? updatedAt = null,
   }) {
     return _then(_value.copyWith(
+      userId: null == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
       displayName: null == displayName
           ? _value.displayName
           : displayName // ignore: cast_nullable_to_non_nullable
@@ -111,7 +118,8 @@ abstract class _$$_UserDataCopyWith<$Res> implements $UserDataCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {String displayName,
+      {String userId,
+      String displayName,
       String? iconUrl,
       String? snsUrl,
       String? univInfo,
@@ -131,6 +139,7 @@ class __$$_UserDataCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? userId = null,
     Object? displayName = null,
     Object? iconUrl = freezed,
     Object? snsUrl = freezed,
@@ -140,6 +149,10 @@ class __$$_UserDataCopyWithImpl<$Res>
     Object? updatedAt = null,
   }) {
     return _then(_$_UserData(
+      userId: null == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as String,
       displayName: null == displayName
           ? _value.displayName
           : displayName // ignore: cast_nullable_to_non_nullable
@@ -176,7 +189,8 @@ class __$$_UserDataCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_UserData with DiagnosticableTreeMixin implements _UserData {
   const _$_UserData(
-      {required this.displayName,
+      {required this.userId,
+      required this.displayName,
       this.iconUrl,
       this.snsUrl,
       this.univInfo,
@@ -187,6 +201,8 @@ class _$_UserData with DiagnosticableTreeMixin implements _UserData {
   factory _$_UserData.fromJson(Map<String, dynamic> json) =>
       _$$_UserDataFromJson(json);
 
+  @override
+  final String userId;
   @override
   final String displayName;
   @override
@@ -204,7 +220,7 @@ class _$_UserData with DiagnosticableTreeMixin implements _UserData {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'UserData(displayName: $displayName, iconUrl: $iconUrl, snsUrl: $snsUrl, univInfo: $univInfo, gender: $gender, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'UserData(userId: $userId, displayName: $displayName, iconUrl: $iconUrl, snsUrl: $snsUrl, univInfo: $univInfo, gender: $gender, createdAt: $createdAt, updatedAt: $updatedAt)';
   }
 
   @override
@@ -212,6 +228,7 @@ class _$_UserData with DiagnosticableTreeMixin implements _UserData {
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'UserData'))
+      ..add(DiagnosticsProperty('userId', userId))
       ..add(DiagnosticsProperty('displayName', displayName))
       ..add(DiagnosticsProperty('iconUrl', iconUrl))
       ..add(DiagnosticsProperty('snsUrl', snsUrl))
@@ -226,6 +243,7 @@ class _$_UserData with DiagnosticableTreeMixin implements _UserData {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_UserData &&
+            (identical(other.userId, userId) || other.userId == userId) &&
             (identical(other.displayName, displayName) ||
                 other.displayName == displayName) &&
             (identical(other.iconUrl, iconUrl) || other.iconUrl == iconUrl) &&
@@ -241,8 +259,8 @@ class _$_UserData with DiagnosticableTreeMixin implements _UserData {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, displayName, iconUrl, snsUrl,
-      univInfo, gender, createdAt, updatedAt);
+  int get hashCode => Object.hash(runtimeType, userId, displayName, iconUrl,
+      snsUrl, univInfo, gender, createdAt, updatedAt);
 
   @JsonKey(ignore: true)
   @override
@@ -260,7 +278,8 @@ class _$_UserData with DiagnosticableTreeMixin implements _UserData {
 
 abstract class _UserData implements UserData {
   const factory _UserData(
-      {required final String displayName,
+      {required final String userId,
+      required final String displayName,
       final String? iconUrl,
       final String? snsUrl,
       final String? univInfo,
@@ -270,6 +289,8 @@ abstract class _UserData implements UserData {
 
   factory _UserData.fromJson(Map<String, dynamic> json) = _$_UserData.fromJson;
 
+  @override
+  String get userId;
   @override
   String get displayName;
   @override

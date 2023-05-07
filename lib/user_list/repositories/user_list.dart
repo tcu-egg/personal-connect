@@ -7,9 +7,10 @@ final userListStreamProvider = StreamProvider.autoDispose((ref) {
   final store = ref.watch(firestoreProvider);
   final usersSnapshot = store.collection('users').snapshots();
   return usersSnapshot.map(
-    (snapshot) => snapshot.docs.fold(
-      <String, UserData>{},
-      (value, doc) => {...value, doc.id: UserData.fromJson(doc.data())},
-    ),
+    (snapshot) => snapshot.docs
+        .map(
+          (doc) => UserData.fromJson(doc.data()),
+        )
+        .toList(),
   );
 });

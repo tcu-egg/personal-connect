@@ -53,6 +53,7 @@ class AuthController {
             ref.watch(userInfoRepositoryProvider(credential.user!.uid));
         await userInfoRepository.save(
           entity: UserData.withDefaults(
+            userId: credential.user!.uid,
             displayName: credential.user!.displayName ?? 'ユーザー',
           ),
         );
