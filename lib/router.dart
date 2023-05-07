@@ -43,6 +43,14 @@ final router = Provider(
         path: '/users',
         pageBuilder: (context, state) =>
             const MaterialPage(child: UserListPage()),
+        routes: [
+          GoRoute(
+            path: ':userId',
+            pageBuilder: (context, state) => MaterialPage(
+              child: ProfilePage(userId: state.params['userId']!),
+            ),
+          )
+        ],
       ),
     ],
     redirect: (context, state) async {
