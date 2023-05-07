@@ -10,18 +10,21 @@ import '../../timetable/widgets/lecture_table.dart';
 import '../repositories/user_data.dart';
 import '../widgets/user_data.dart';
 
-class MyAccountPage extends ConsumerWidget {
-  const MyAccountPage({super.key});
+class ProfilePage extends ConsumerWidget {
+  const ProfilePage({super.key, required this.userId});
+
+  final String userId;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final firebaseAuth = ref.watch(firebaseAuthProvider);
-    final userInfo =
-        ref.watch(userDataStreamProvider(firebaseAuth.currentUser!.uid));
-    final userInfoRepository =
-        ref.watch(userInfoRepositoryProvider(firebaseAuth.currentUser!.uid));
-    final timetable =
-        ref.watch(timetableStreamProvider(firebaseAuth.currentUser!.uid));
+    final userInfo = ref.watch(userDataStreamProvider(userId));
+    final userInfoRepository = ref.watch(userInfoRepositoryProvider(userId));
+    final timetable = ref.watch(timetableStreamProvider(userId));
+
+    bool isAuthor() {
+      return firebaseAuth.currentUser?.uid == userId;
+    }
 
     return Scaffold(
       appBar: commonAppBar(),
@@ -32,8 +35,8 @@ class MyAccountPage extends ConsumerWidget {
             userInfo.when(
               data: (data) => UserDataWidget(
                 initialUserInfo: data,
-                email: firebaseAuth.currentUser?.email,
-                canEdit: true,
+                email: isAuthor() ? firebaseAuth.currentUser?.email : null,
+                canEdit: isAuthor(),
                 onSave: (state) async {
                   if (data != state) {
                     await userInfoRepository.save(entity: state);
@@ -56,10 +59,13 @@ class MyAccountPage extends ConsumerWidget {
                   const EdgeInsets.symmetric(vertical: 32, horizontal: 128),
               child: timetable.when(
                 data: (data) => MouseRegion(
-                  cursor: SystemMouseCursors.click,
+                  cursor: isAuthor()
+                      ? SystemMouseCursors.click
+                      : SystemMouseCursors.basic,
                   child: GestureDetector(
-                    onTap: () =>
-                        GoRouter.of(context).go('/profile/edit-timetable'),
+                    onTap: () => isAuthor()
+                        ? GoRouter.of(context).go('/profile/edit-timetable')
+                        : null,
                     child: LectureTableWidget(
                       lectures: data.lectures,
                     ),

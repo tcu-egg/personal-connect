@@ -8,7 +8,8 @@ import 'common/pages/home.dart';
 import 'common/pages/signin.dart';
 import 'external/controllers/auth.dart';
 import 'timetable/pages/timetable_edit.dart';
-import 'user_data/pages/my_account.dart';
+import 'user_data/pages/my_profile.dart';
+import 'user_data/pages/profile.dart';
 
 const _initialLocation = '/';
 final router = Provider(
@@ -28,7 +29,7 @@ final router = Provider(
       GoRoute(
         path: '/profile',
         pageBuilder: (context, state) =>
-            const MaterialPage(child: MyAccountPage()),
+            const MaterialPage(child: MyProfilePage()),
         routes: [
           GoRoute(
             path: 'edit-timetable',
