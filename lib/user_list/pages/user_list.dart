@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:personal_connect/user_list/repositories/user_list.dart';
 import 'package:personal_connect/user_list/widgets/user_card.dart';
@@ -23,6 +24,26 @@ class UserListPage extends HookConsumerWidget {
         ref.watch(followingsStreamProvider(firebaseAuth.currentUser!.uid));
     final followingsRepository =
         ref.watch(followingsRepositoryProvider(firebaseAuth.currentUser!.uid));
+
+    final filteredUserList = useState<Iterable<UserData>>([]);
+    final searchText = useState('');
+    useEffect(
+      () {
+        if (userList.hasValue) {
+          filteredUserList.value = userList.value!.where((userData) {
+            // 自分自身は表示しない
+            final isNotMyself =
+                userData.userId != firebaseAuth.currentUser!.uid;
+            // 検索条件
+            final searchCondition =
+                userData.displayName.contains(searchText.value);
+            return isNotMyself && searchCondition;
+          });
+        }
+        return null;
+      },
+      [userList, searchText],
+    );
 
     Widget buildFollowButton(UserData userData) {
       return followings.when(
@@ -77,15 +98,18 @@ class UserListPage extends HookConsumerWidget {
       bottomNavigationBar: const CommonNavigationBar(),
       body: Column(
         children: [
+          TextFormField(
+            onChanged: (value) => searchText.value = value,
+            decoration: const InputDecoration(
+              labelText: 'ユーザー名で絞り込み',
+              prefixIcon: Icon(Icons.search),
+              fillColor: Color.fromRGBO(0x0E, 0x15, 0x1B, 0.475),
+            ),
+          ),
           SingleChildScrollView(
             child: userList.when(
               data: (users) => Column(
-                children: users
-                    .where(
-                      // 自分自身は表示しない
-                      (userData) =>
-                          userData.userId != firebaseAuth.currentUser!.uid,
-                    )
+                children: filteredUserList.value
                     .map(
                       (userData) => UserCardWidget(
                         userData: userData,
