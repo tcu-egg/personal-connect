@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:personal_connect/common/widgets/app_bar.dart';
 
 import '../../common/widgets/navigation_bar.dart';
 import '../../external/controllers/auth.dart';
-import '../../layout.dart';
 import '../../timetable/repositories/timetable.dart';
 import '../../timetable/widgets/lecture_table.dart';
 import '../repositories/user_data.dart';
@@ -26,7 +26,7 @@ class ProfilePage extends ConsumerWidget {
     }
 
     return Scaffold(
-      appBar: commonAppBar(),
+      appBar: const CommonAppBar(),
       bottomNavigationBar: const CommonNavigationBar(),
       body: SingleChildScrollView(
         child: Column(

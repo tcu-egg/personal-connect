@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:personal_connect/common/widgets/app_bar.dart';
 
 import '../../common/widgets/navigation_bar.dart';
 import '../../external/controllers/auth.dart';
-import '../../layout.dart';
 import '../controllers/status_list.dart';
 import '../widgets/status_card.dart';
 
@@ -21,7 +21,7 @@ class StatusListPage extends HookConsumerWidget {
     );
 
     return Scaffold(
-      appBar: commonAppBar(),
+      appBar: const CommonAppBar(),
       bottomNavigationBar: const CommonNavigationBar(),
       body: Column(
         children: [

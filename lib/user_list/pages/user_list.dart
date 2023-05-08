@@ -4,9 +4,9 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:personal_connect/user_list/repositories/user_list.dart';
 import 'package:personal_connect/user_list/widgets/user_card.dart';
 
+import '../../common/widgets/app_bar.dart';
 import '../../common/widgets/navigation_bar.dart';
 import '../../external/controllers/auth.dart';
-import '../../layout.dart';
 import '../../social/entities/follower.dart';
 import '../../social/entities/following.dart';
 import '../../social/repositories/follower.dart';
@@ -104,7 +104,7 @@ class UserListPage extends HookConsumerWidget {
     }
 
     return Scaffold(
-      appBar: commonAppBar(),
+      appBar: const CommonAppBar(),
       bottomNavigationBar: const CommonNavigationBar(),
       body: Column(
         children: [

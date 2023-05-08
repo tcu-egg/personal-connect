@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:personal_connect/common/widgets/app_bar.dart';
 
 import '../../common/widgets/navigation_bar.dart';
 import '../../external/controllers/auth.dart';
-import '../../layout.dart';
 import '../repositories/timetable.dart';
 import '../widgets/timetable.dart';
 
@@ -17,7 +17,7 @@ class TimetableEditPage extends ConsumerWidget {
         ref.watch(timetableStreamProvider(firebaseAuth.currentUser!.uid));
 
     return Scaffold(
-      appBar: commonAppBar(),
+      appBar: const CommonAppBar(),
       bottomNavigationBar: const CommonNavigationBar(),
       body: timetable.when(
         data: (data) => Column(

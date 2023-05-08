@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:personal_connect/common/widgets/app_bar.dart';
 
 import '../../external/controllers/auth.dart';
-import '../../layout.dart';
 
 class SignInPage extends ConsumerWidget {
   const SignInPage({super.key});
@@ -14,7 +14,7 @@ class SignInPage extends ConsumerWidget {
 
     return Scaffold(
       backgroundColor: Theme.of(context).primaryColor,
-      appBar: commonAppBar(),
+      appBar: const CommonAppBar(),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
