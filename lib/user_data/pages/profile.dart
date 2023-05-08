@@ -36,8 +36,8 @@ class ProfilePage extends ConsumerWidget {
                 initialUserInfo: data,
                 email: isAuthor() ? firebaseAuth.currentUser?.email : null,
                 canEdit: isAuthor(),
-                onSave: (state) => isAuthor()
-                    ? () async {
+                onSave: isAuthor()
+                    ? (state) async {
                         if (data != state) {
                           final userInfoRepository =
                               ref.read(userInfoRepositoryProvider(userId));

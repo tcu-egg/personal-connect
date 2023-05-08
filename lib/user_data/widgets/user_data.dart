@@ -17,7 +17,7 @@ class UserDataWidget extends HookWidget {
 
   final UserData initialUserInfo;
   final String? email;
-  final bool? canEdit;
+  final bool canEdit;
   final void Function(UserData entity)? onSave;
 
   @override
@@ -132,11 +132,13 @@ class UserDataWidget extends HookWidget {
                           ),
                         )
                         .toList(),
-                    onChanged: (item) {
-                      if (item != null) {
-                        state.value = state.value.copyWith(gender: item);
-                      }
-                    },
+                    onChanged: canEdit
+                        ? (Gender? item) {
+                            if (item != null) {
+                              state.value = state.value.copyWith(gender: item);
+                            }
+                          }
+                        : null,
                   ),
                 ],
               ),
