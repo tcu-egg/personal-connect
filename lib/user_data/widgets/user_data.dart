@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:personal_connect/user_data/widgets/one_text_form.dart';
 import 'package:personal_connect/user_data/widgets/user_icon.dart';
 
 import '../entities/user_data.dart';
@@ -22,6 +23,7 @@ class UserDataWidget extends HookWidget {
   Widget build(BuildContext context) {
     final displayNameController =
         useTextEditingController(text: initialUserInfo?.displayName);
+    final emailController = useTextEditingController(text: email);
     final state = useState(initialUserInfo);
 
     return SafeArea(
@@ -46,68 +48,25 @@ class UserDataWidget extends HookWidget {
                         16,
                         0,
                       ),
-                      child: TextFormField(
-                        initialValue: email,
-                        decoration: InputDecoration(
-                          labelText: 'メールアドレス',
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Theme.of(context).colorScheme.background,
-                            ),
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                          filled: true,
-                          fillColor: Theme.of(context).colorScheme.background,
-                          prefixIcon: const Icon(
-                            Icons.email,
-                          ),
+                      child: OneTextFormWidget(
+                        controller: emailController,
+                        labelText: 'メールアドレス',
+                        prefixIcon: const Icon(
+                          Icons.email,
                         ),
-                        enabled: false,
-                        style: Theme.of(context).textTheme.bodyMedium,
                       ),
                     ),
                   ),
                   Padding(
                     padding:
                         const EdgeInsetsDirectional.fromSTEB(16, 16, 16, 0),
-                    child: TextFormField(
+                    child: OneTextFormWidget(
                       controller: displayNameController,
-                      enabled: canEdit,
-                      decoration: InputDecoration(
-                        labelText: '表示名',
-                        // labelStyle: Theme.of(context).subtitle2,
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: Theme.of(context).colorScheme.background,
-                          ),
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: const BorderSide(
-                            color: Color(0x00000000),
-                          ),
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        errorBorder: OutlineInputBorder(
-                          borderSide: const BorderSide(
-                            color: Color(0x00000000),
-                          ),
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        focusedErrorBorder: OutlineInputBorder(
-                          borderSide: const BorderSide(
-                            color: Color(0x00000000),
-                          ),
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        filled: true,
-                        fillColor: Theme.of(context).colorScheme.background,
-                        prefixIcon: const Icon(
-                          Icons.person_rounded,
-                          // color: Theme.of(context).secondaryText,
-                        ),
+                      canEdit: canEdit,
+                      labelText: '表示名',
+                      prefixIcon: const Icon(
+                        Icons.person_rounded,
                       ),
-                      style: Theme.of(context).textTheme.bodyMedium,
                     ),
                   ),
                 ],
