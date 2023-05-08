@@ -7,7 +7,7 @@ import 'lecture_cell.dart';
 const rowMaxLength = 7;
 final headerColor = Colors.pink.shade300;
 
-class LectureTableWidget extends HookWidget {
+class LectureTableWidget extends StatelessWidget {
   const LectureTableWidget({super.key, required this.lectures, this.onTapCell});
 
   final Map<Weekday, LectureMap> lectures;

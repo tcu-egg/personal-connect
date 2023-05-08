@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
 import 'package:personal_connect/user_data/widgets/user_icon.dart';
 
 import '../../user_data/entities/user_data.dart';
 
-class UserCardWidget extends HookWidget {
+class UserCardWidget extends StatelessWidget {
   const UserCardWidget({
     super.key,
     required this.userData,

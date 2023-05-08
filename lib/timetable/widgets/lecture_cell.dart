@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:personal_connect/timetable/themes/timetable_color.dart';
 
 import '../entities/lecture.dart';
 
-class LectureCellWidget extends HookWidget {
+class LectureCellWidget extends StatelessWidget {
   const LectureCellWidget({super.key, this.lecture});
 
   final Lecture? lecture;
