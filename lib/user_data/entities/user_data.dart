@@ -17,6 +17,7 @@ class UserData with _$UserData {
     String? snsUrl,
     String? univInfo,
     required Gender gender,
+    String? statusMessage,
     required DateTime createdAt,
     required DateTime updatedAt,
   }) = _UserData;
@@ -31,6 +32,7 @@ class UserData with _$UserData {
     String? snsUrl,
     String? univInfo,
     Gender? gender,
+    String? statusMessage,
     DateTime? createdAt,
     DateTime? updatedAt,
   }) {
@@ -42,6 +44,7 @@ class UserData with _$UserData {
       univInfo: univInfo,
       iconUrl: iconUrl,
       gender: gender ?? Gender.none,
+      statusMessage: statusMessage,
       createdAt: createdAt ?? now,
       updatedAt: updatedAt ?? now,
     );

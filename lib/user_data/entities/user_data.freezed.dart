@@ -26,6 +26,7 @@ mixin _$UserData {
   String? get snsUrl => throw _privateConstructorUsedError;
   String? get univInfo => throw _privateConstructorUsedError;
   Gender get gender => throw _privateConstructorUsedError;
+  String? get statusMessage => throw _privateConstructorUsedError;
   DateTime get createdAt => throw _privateConstructorUsedError;
   DateTime get updatedAt => throw _privateConstructorUsedError;
 
@@ -47,6 +48,7 @@ abstract class $UserDataCopyWith<$Res> {
       String? snsUrl,
       String? univInfo,
       Gender gender,
+      String? statusMessage,
       DateTime createdAt,
       DateTime updatedAt});
 }
@@ -70,6 +72,7 @@ class _$UserDataCopyWithImpl<$Res, $Val extends UserData>
     Object? snsUrl = freezed,
     Object? univInfo = freezed,
     Object? gender = null,
+    Object? statusMessage = freezed,
     Object? createdAt = null,
     Object? updatedAt = null,
   }) {
@@ -98,6 +101,10 @@ class _$UserDataCopyWithImpl<$Res, $Val extends UserData>
           ? _value.gender
           : gender // ignore: cast_nullable_to_non_nullable
               as Gender,
+      statusMessage: freezed == statusMessage
+          ? _value.statusMessage
+          : statusMessage // ignore: cast_nullable_to_non_nullable
+              as String?,
       createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -124,6 +131,7 @@ abstract class _$$_UserDataCopyWith<$Res> implements $UserDataCopyWith<$Res> {
       String? snsUrl,
       String? univInfo,
       Gender gender,
+      String? statusMessage,
       DateTime createdAt,
       DateTime updatedAt});
 }
@@ -145,6 +153,7 @@ class __$$_UserDataCopyWithImpl<$Res>
     Object? snsUrl = freezed,
     Object? univInfo = freezed,
     Object? gender = null,
+    Object? statusMessage = freezed,
     Object? createdAt = null,
     Object? updatedAt = null,
   }) {
@@ -173,6 +182,10 @@ class __$$_UserDataCopyWithImpl<$Res>
           ? _value.gender
           : gender // ignore: cast_nullable_to_non_nullable
               as Gender,
+      statusMessage: freezed == statusMessage
+          ? _value.statusMessage
+          : statusMessage // ignore: cast_nullable_to_non_nullable
+              as String?,
       createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -195,6 +208,7 @@ class _$_UserData with DiagnosticableTreeMixin implements _UserData {
       this.snsUrl,
       this.univInfo,
       required this.gender,
+      this.statusMessage,
       required this.createdAt,
       required this.updatedAt});
 
@@ -214,13 +228,15 @@ class _$_UserData with DiagnosticableTreeMixin implements _UserData {
   @override
   final Gender gender;
   @override
+  final String? statusMessage;
+  @override
   final DateTime createdAt;
   @override
   final DateTime updatedAt;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'UserData(userId: $userId, displayName: $displayName, iconUrl: $iconUrl, snsUrl: $snsUrl, univInfo: $univInfo, gender: $gender, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'UserData(userId: $userId, displayName: $displayName, iconUrl: $iconUrl, snsUrl: $snsUrl, univInfo: $univInfo, gender: $gender, statusMessage: $statusMessage, createdAt: $createdAt, updatedAt: $updatedAt)';
   }
 
   @override
@@ -234,6 +250,7 @@ class _$_UserData with DiagnosticableTreeMixin implements _UserData {
       ..add(DiagnosticsProperty('snsUrl', snsUrl))
       ..add(DiagnosticsProperty('univInfo', univInfo))
       ..add(DiagnosticsProperty('gender', gender))
+      ..add(DiagnosticsProperty('statusMessage', statusMessage))
       ..add(DiagnosticsProperty('createdAt', createdAt))
       ..add(DiagnosticsProperty('updatedAt', updatedAt));
   }
@@ -251,6 +268,8 @@ class _$_UserData with DiagnosticableTreeMixin implements _UserData {
             (identical(other.univInfo, univInfo) ||
                 other.univInfo == univInfo) &&
             (identical(other.gender, gender) || other.gender == gender) &&
+            (identical(other.statusMessage, statusMessage) ||
+                other.statusMessage == statusMessage) &&
             (identical(other.createdAt, createdAt) ||
                 other.createdAt == createdAt) &&
             (identical(other.updatedAt, updatedAt) ||
@@ -260,7 +279,7 @@ class _$_UserData with DiagnosticableTreeMixin implements _UserData {
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, userId, displayName, iconUrl,
-      snsUrl, univInfo, gender, createdAt, updatedAt);
+      snsUrl, univInfo, gender, statusMessage, createdAt, updatedAt);
 
   @JsonKey(ignore: true)
   @override
@@ -284,6 +303,7 @@ abstract class _UserData implements UserData {
       final String? snsUrl,
       final String? univInfo,
       required final Gender gender,
+      final String? statusMessage,
       required final DateTime createdAt,
       required final DateTime updatedAt}) = _$_UserData;
 
@@ -301,6 +321,8 @@ abstract class _UserData implements UserData {
   String? get univInfo;
   @override
   Gender get gender;
+  @override
+  String? get statusMessage;
   @override
   DateTime get createdAt;
   @override

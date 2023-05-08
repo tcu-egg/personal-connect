@@ -13,6 +13,7 @@ _$_UserData _$$_UserDataFromJson(Map<String, dynamic> json) => _$_UserData(
       snsUrl: json['snsUrl'] as String?,
       univInfo: json['univInfo'] as String?,
       gender: $enumDecode(_$GenderEnumMap, json['gender']),
+      statusMessage: json['statusMessage'] as String?,
       createdAt: DateTime.parse(json['createdAt'] as String),
       updatedAt: DateTime.parse(json['updatedAt'] as String),
     );
@@ -25,6 +26,7 @@ Map<String, dynamic> _$$_UserDataToJson(_$_UserData instance) =>
       'snsUrl': instance.snsUrl,
       'univInfo': instance.univInfo,
       'gender': _$GenderEnumMap[instance.gender]!,
+      'statusMessage': instance.statusMessage,
       'createdAt': instance.createdAt.toIso8601String(),
       'updatedAt': instance.updatedAt.toIso8601String(),
     };
