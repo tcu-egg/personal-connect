@@ -29,6 +29,14 @@ class FollowingsRepository {
   final ProviderRef<FollowingsRepository> ref;
   final String userId;
 
+  Future<List<Following>> getAll() async {
+    final store = ref.watch(_followingsStoreProvider(userId));
+    final followingsSnapshots = await store.get();
+    return followingsSnapshots.docs
+        .map((doc) => Following.fromJson(doc.data()))
+        .toList();
+  }
+
   Future<void> add({required Following entity}) async {
     final store = ref.watch(_followingsStoreProvider(userId));
     final now = timeNow();
