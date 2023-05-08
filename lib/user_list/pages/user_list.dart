@@ -22,8 +22,6 @@ class UserListPage extends HookConsumerWidget {
     final userList = ref.watch(userListStreamProvider);
     final followings =
         ref.watch(followingsStreamProvider(firebaseAuth.currentUser!.uid));
-    final followingsRepository =
-        ref.read(followingsRepositoryProvider(firebaseAuth.currentUser!.uid));
 
     final filteredUserList = useState<Iterable<UserData>>([]);
     final searchText = useState('');
@@ -55,9 +53,15 @@ class UserListPage extends HookConsumerWidget {
                 ? TextButton(
                     onPressed: () async {
                       // フォロー解除
+                      final followingsRepository = ref.read(
+                        followingsRepositoryProvider(
+                          firebaseAuth.currentUser!.uid,
+                        ),
+                      );
                       await followingsRepository.remove(
                         followingUserId: userData.userId,
                       );
+
                       final followersRepository = ref
                           .read(followersRepositoryProvider(userData.userId));
                       await followersRepository.remove(
@@ -69,9 +73,15 @@ class UserListPage extends HookConsumerWidget {
                 : TextButton(
                     onPressed: () async {
                       // フォローする
+                      final followingsRepository = ref.read(
+                        followingsRepositoryProvider(
+                          firebaseAuth.currentUser!.uid,
+                        ),
+                      );
                       await followingsRepository.add(
                         entity: Following.withDefaults(userId: userData.userId),
                       );
+
                       final followersRepository = ref
                           .read(followersRepositoryProvider(userData.userId));
                       await followersRepository.add(

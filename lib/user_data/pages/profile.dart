@@ -19,7 +19,6 @@ class ProfilePage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final firebaseAuth = ref.watch(firebaseAuthProvider);
     final userInfo = ref.watch(userDataStreamProvider(userId));
-    final userInfoRepository = ref.read(userInfoRepositoryProvider(userId));
     final timetable = ref.watch(timetableStreamProvider(userId));
 
     bool isAuthor() {
@@ -37,19 +36,24 @@ class ProfilePage extends ConsumerWidget {
                 initialUserInfo: data,
                 email: isAuthor() ? firebaseAuth.currentUser?.email : null,
                 canEdit: isAuthor(),
-                onSave: (state) async {
-                  if (data != state) {
-                    await userInfoRepository.save(entity: state);
-                  }
-                  if (context.mounted) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: const Text('保存しました'),
-                        backgroundColor: Theme.of(context).colorScheme.primary,
-                      ),
-                    );
-                  }
-                },
+                onSave: (state) => isAuthor()
+                    ? () async {
+                        if (data != state) {
+                          final userInfoRepository =
+                              ref.read(userInfoRepositoryProvider(userId));
+                          await userInfoRepository.save(entity: state);
+                        }
+                        if (context.mounted) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: const Text('保存しました'),
+                              backgroundColor:
+                                  Theme.of(context).colorScheme.primary,
+                            ),
+                          );
+                        }
+                      }
+                    : null,
               ),
               error: (err, _) => const Center(child: Text('エラーが発生しました')),
               loading: () => const Center(child: CircularProgressIndicator()),

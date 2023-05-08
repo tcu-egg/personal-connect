@@ -15,8 +15,6 @@ class TimetableEditPage extends ConsumerWidget {
     final firebaseAuth = ref.watch(firebaseAuthProvider);
     final timetable =
         ref.watch(timetableStreamProvider(firebaseAuth.currentUser!.uid));
-    final timetableRepository =
-        ref.read(timetableRepositoryProvider(firebaseAuth.currentUser!.uid));
 
     return Scaffold(
       appBar: commonAppBar(),
@@ -32,6 +30,11 @@ class TimetableEditPage extends ConsumerWidget {
                 canEdit: true,
                 onSave: (state) async {
                   if (data != state) {
+                    final timetableRepository = ref.read(
+                      timetableRepositoryProvider(
+                        firebaseAuth.currentUser!.uid,
+                      ),
+                    );
                     await timetableRepository.save(entity: state);
                   }
                   if (context.mounted) {
