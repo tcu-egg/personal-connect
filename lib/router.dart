@@ -4,9 +4,9 @@ import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:personal_connect/user_list/pages/user_list.dart';
 
-import 'common/pages/home.dart';
 import 'common/pages/signin.dart';
 import 'external/controllers/auth.dart';
+import 'status_list/pages/status_list.dart';
 import 'timetable/pages/timetable_edit.dart';
 import 'user_data/pages/my_profile.dart';
 import 'user_data/pages/profile.dart';
@@ -24,7 +24,8 @@ final router = Provider(
       ),
       GoRoute(
         path: '/home',
-        pageBuilder: (context, state) => const MaterialPage(child: HomePage()),
+        pageBuilder: (context, state) =>
+            const MaterialPage(child: StatusListPage()),
       ),
       GoRoute(
         path: '/profile',
