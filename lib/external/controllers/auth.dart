@@ -50,7 +50,7 @@ class AuthController {
       if (credential.additionalUserInfo != null &&
           credential.additionalUserInfo!.isNewUser) {
         final userInfoRepository =
-            ref.watch(userInfoRepositoryProvider(credential.user!.uid));
+            ref.read(userInfoRepositoryProvider(credential.user!.uid));
         await userInfoRepository.save(
           entity: UserData.withDefaults(
             userId: credential.user!.uid,

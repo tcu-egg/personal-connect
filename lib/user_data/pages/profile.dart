@@ -19,7 +19,7 @@ class ProfilePage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final firebaseAuth = ref.watch(firebaseAuthProvider);
     final userInfo = ref.watch(userDataStreamProvider(userId));
-    final userInfoRepository = ref.watch(userInfoRepositoryProvider(userId));
+    final userInfoRepository = ref.read(userInfoRepositoryProvider(userId));
     final timetable = ref.watch(timetableStreamProvider(userId));
 
     bool isAuthor() {

@@ -23,7 +23,7 @@ class UserListPage extends HookConsumerWidget {
     final followings =
         ref.watch(followingsStreamProvider(firebaseAuth.currentUser!.uid));
     final followingsRepository =
-        ref.watch(followingsRepositoryProvider(firebaseAuth.currentUser!.uid));
+        ref.read(followingsRepositoryProvider(firebaseAuth.currentUser!.uid));
 
     final filteredUserList = useState<Iterable<UserData>>([]);
     final searchText = useState('');

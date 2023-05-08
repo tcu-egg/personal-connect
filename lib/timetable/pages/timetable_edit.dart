@@ -16,7 +16,7 @@ class TimetableEditPage extends ConsumerWidget {
     final timetable =
         ref.watch(timetableStreamProvider(firebaseAuth.currentUser!.uid));
     final timetableRepository =
-        ref.watch(timetableRepositoryProvider(firebaseAuth.currentUser!.uid));
+        ref.read(timetableRepositoryProvider(firebaseAuth.currentUser!.uid));
 
     return Scaffold(
       appBar: commonAppBar(),
